@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+
+  resources :transactions, except: [:show]
+
+  get 'transactions/dashboard'
 
   get 'welcome/about'
 
   root 'welcome#index'
+
 end

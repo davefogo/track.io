@@ -1,0 +1,7 @@
+<h1> All Transactions</h1>
+<% @transactions.each do |t| %>
+  <p> <%= t.date %> </p>
+  <p> <%= t.amount %></p>
+  <p> <%= t.type_of_transaction %></p>
+
+<% end %>

@@ -1,0 +1,11 @@
+<%= form_for @transaction do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  <%= f.label :amount %>
+  <%= f.number_field :amount %>
+  <%= f.label :type_of_transaction %>
+  <%= f.select(:type_of_transaction, options_for_select([["Cash"],["Credit Card"]])) %>
+  <%= f.label :category %>
+  <%= f.select(:category, options_for_select([["Cash"], ["Condo Fee"], ["Electricity"], ["Gas"], ["Groceries"], ["Maid"], ["Other"], ["Tv/Internet"], ["Water"]])) %>
+  <%= f.submit "Save" %>
+<% end %>
