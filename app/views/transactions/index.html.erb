@@ -3,5 +3,6 @@
   <p> <%= t.date %> </p>
   <p> <%= t.amount %></p>
   <p> <%= t.type_of_transaction %></p>
-
 <% end %>
+
+<h3><%= @transactions.sum(:amount) %></h3>
