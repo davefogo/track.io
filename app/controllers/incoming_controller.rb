@@ -4,7 +4,7 @@ class IncomingController < ApplicationController
   def create
     date = Time.now
     amount = params["stripped-text"]
-    type_of_transaction = [:subject]
+    type_of_transaction = params[:subject]
     category = params["stripped-signature"]
     category.gsub!("--", "")
     category.strip!
