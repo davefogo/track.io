@@ -1,4 +1,10 @@
 <h1> All Transactions</h1>
+<%= form_tag transactions_path, method: :get do %>
+  <%= text_field_tag 'search[date_from]', @search.date_from %>
+  <%= text_field_tag 'search[date_to]', @search.date_to %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
 <% @transactions.each do |t| %>
   <p> <%= t.date %> </p>
   <p> <%= t.amount %></p>

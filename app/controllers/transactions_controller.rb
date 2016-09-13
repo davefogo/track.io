@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
+
   def index
-    @transactions = Transaction.all
+    @search = TransactionSearch.new(params[:search])
+    @transactions = @search.scope
   end
 
   def new
