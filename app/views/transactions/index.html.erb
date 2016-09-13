@@ -9,6 +9,14 @@
   <p> <%= t.date %> </p>
   <p> <%= t.amount %></p>
   <p> <%= t.type_of_transaction %></p>
+  <p> <%= t.category %></p>
 <% end %>
 
+<h2>Subtotal Cash</h2>
+<h3><%= @transactions.where(type_of_transaction: "Cash").sum(:amount) %></h3>
+
+<h2>Subtotal Credit</h2>
+<h3><%= @transactions.where(type_of_transaction: "Credit").sum(:amount) %></h3>
+
+<h2>Total</h2>
 <h3><%= @transactions.sum(:amount) %></h3>
