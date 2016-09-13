@@ -6,8 +6,10 @@ class IncomingController < ApplicationController
     amount = params["stripped-text"]
     type_of_transaction = [:subject]
     category = params["stripped-signature"]
+    category.gsub!("--", "")
+    category.strip!
 
-    transaction = Transaction.build(date: date, amount: amount, type_of_transaction: type_of_transaction, category: category)
+    transaction = Transaction.new(date: date, amount: amount, type_of_transaction: type_of_transaction, category: category)
     transaction.save!
 
     head 200
