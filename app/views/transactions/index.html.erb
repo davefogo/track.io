@@ -12,11 +12,13 @@
   <p> <%= t.category %></p>
 <% end %>
 
-<h2>Subtotal Cash</h2>
-<h3><%= @transactions.where(type_of_transaction: "Cash").sum(:amount) %></h3>
+<h2>Total Cash Spent</h2>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Cash").sum(:amount)) %></h3>
 
-<h2>Subtotal Credit</h2>
-<h3><%= @transactions.where(type_of_transaction: "Credit").sum(:amount) %></h3>
+<h2>Available</h2>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Cash").sum(:amount) - 1_166_666) %></h3>
 
-<h2>Total</h2>
-<h3><%= @transactions.sum(:amount) %></h3>
+<h2>Net Worth</h2>
+<h3><%= number_to_currency(Transaction.sum(:amount)) %></h3>
+
+<h2><%= link_to 'Back', root_path %></h2>

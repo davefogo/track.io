@@ -41,6 +41,7 @@ class TransactionsController < ApplicationController
   end
 
   def dashboard
+    @transactions = Transaction.where(:date => Date.today.at_beginning_of_month..Date.today)
   end
 
   private
