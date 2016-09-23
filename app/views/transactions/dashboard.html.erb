@@ -2,7 +2,7 @@
 <h3><%= number_to_currency(@transactions.sum(:amount)) %></h3>
 
 <h2>Available</h2>
-<h3><%= number_to_currency(@transactions.sum(:amount) - 1_166_666)%></h3>
+<h3><%= number_to_currency(1_166_666 - @transactions.sum(:amount))%></h3>
 
 
 <h2>Net Worth</h2>
