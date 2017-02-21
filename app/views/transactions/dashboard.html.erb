@@ -1,12 +1,15 @@
 <h2>Total Cash Spent</h2>
-<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount)) %></h3>
+<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount)) %></h3>
 
-<h2>Available</h2>
-<h3><%= number_to_currency(10_000_000 + @transactions.where(type_of_transaction: "Expense").sum(:amount))%></h3>
+<h2>Total Credit Spent</h2>
+<h3><%= number_to_currency(@transactions.where(category: "Credit").sum(:amount)) %></h3>
+
+<h2>Total Spent</h2>
+<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount) + @transactions.where(category: "Credit").sum(:amount)) %></h3>
 
 
 <h2>Net Worth</h2>
-<h3><%= number_to_currency(Transaction.sum(:amount)) %></h3>
+<h3><%= number_to_currency(10_000_000 - Transaction.sum(:amount)) %></h3>
 
-<h2><%= link_to 'New', new_transaction_path %></h2>
+<h2><%= link_to 'New Transaction', new_transaction_path %></h2>
 <h2><%= link_to 'Back', root_path %></h2>

@@ -28,7 +28,7 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction = Transaction.find(params[:id])
-    @transaction.update_attributes(transaction_params)\
+    @transaction.update_attributes(transaction_params)
 
     if @transaction.save
       flash[:notice] = "Transaction successfully updated."
@@ -47,6 +47,6 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:date, :amount, :type_of_transaction, :cash_balance, :credit_balance)
+    params.require(:transaction).permit(:date, :amount, :type_of_transaction, :cash_balance, :credit_balance, :category)
   end
 end
