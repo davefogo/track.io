@@ -16,9 +16,10 @@
 <h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount)) %></h3>
 
 <h2>Available</h2>
-<h3><%= number_to_currency(5_000_000 + @transactions.where(type_of_transaction: "Expense").sum(:amount)) %></h3>
+<h3><%= number_to_currency(10_000_000 + @transactions.where(type_of_transaction: "Expense").sum(:amount)) %></h3>
 
 <h2>Net Worth</h2>
 <h3><%= number_to_currency(Transaction.sum(:amount)) %></h3>
 
+<h2><%= link_to 'New', new_transaction_path %></h2>
 <h2><%= link_to 'Back', root_path %></h2>
