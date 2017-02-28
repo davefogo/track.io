@@ -7,6 +7,9 @@
 <h2>Total Spent</h2>
 <h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount) + @transactions.where(category: "Credit").sum(:amount)) %></h3>
 
+<h2>Available Cash</h2>
+<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount) + @transactions.where(category: "Credit").sum(:amount)) %></h3>
+
 
 <h2>Net Worth</h2>
 <h3><%= number_to_currency(10_000_000 - Transaction.sum(:amount)) %></h3>

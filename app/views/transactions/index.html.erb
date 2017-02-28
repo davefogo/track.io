@@ -7,7 +7,10 @@
 
 <% @transactions.each do |t| %>
   <p> <%= t.date %> </p>
-  <p> <%= t.amount %> <span><%= link_to 'Edit', edit_transaction_path(t) %></span></p>
+  <p> <%= t.amount %>
+    <span><%= link_to 'Edit', edit_transaction_path(t) %></span> |
+    <span><%= link_to 'Delete', t, method: :delete %></span>
+  </p>
   <p> <%= t.type_of_transaction %></p>
   <p> <%= t.category %></p>
 <% end %>
