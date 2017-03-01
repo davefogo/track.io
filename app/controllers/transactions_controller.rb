@@ -40,8 +40,21 @@ class TransactionsController < ApplicationController
 
   end
 
+  def destroy
+    @transaction = Transaction.find(params[:id])
+
+    if @transaction.destroy
+      flash[:notice] = "Your transaction was destroyed succesfully."
+      redirect_to transactions_path
+    else
+      flash.now[:alert] = "Your transaction could not be destroyed. Please try again."
+      redirect_to transactions_path
+    end
+  end
+
   def dashboard
     @transactions = Transaction.where(:date => Date.today.at_beginning_of_month..Date.today)
+    @alltransactions = Transaction.all
   end
 
   private

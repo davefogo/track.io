@@ -4,8 +4,8 @@
   <%= f.label :amount %>
   <%= f.number_field :amount %>
   <%= f.label :type_of_transaction %>
-  <%= f.select(:type_of_transaction, options_for_select([["Expense"],["Income"]])) %>
+  <%= f.select(:type_of_transaction, options_for_select([["Credit Loan"], ["Expense"], ["Income"], ["Reimbursement"]])) %>
   <%= f.label :category %>
-  <%= f.select(:category, options_for_select([["Cash"], ["Credit"],["Condo Fee"], ["Electricity"], ["Gas"], ["Groceries"], ["Maid"], ["Other"], ["Tv/Internet"], ["Water"]])) %>
+  <%= f.select(:category, options_for_select([["Cash"], ["Credit"], ["Condo Fee"], ["Electricity"], ["Gas"], ["Groceries"], ["Maid"], ["Loan Payment"], ["Other"], ["Reimbursement"], ["Salary"], ["Tv/Internet"], ["Water"]])) %>
   <%= f.submit "Save" %>
 <% end %>

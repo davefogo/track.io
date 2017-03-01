@@ -1,18 +1,28 @@
-<h2>Total Cash Spent</h2>
+<h1>Income </h1>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Income").sum(:amount)) %></h3>
+
+<h1>Expenses</h1>
+<h2>Cash Spent</h2>
 <h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount)) %></h3>
 
-<h2>Total Credit Spent</h2>
+<h2>Credit Spent</h2>
 <h3><%= number_to_currency(@transactions.where(category: "Credit").sum(:amount)) %></h3>
 
+<h2>Reimbursements</h2>
+<h3><%= number_to_currency(@alltransactions.where(type_of_transaction: "Reimbursement").sum(:amount)) %></h3>
+
+<h2>Credit Loans</h2>
+<h3><%= number_to_currency(@alltransactions.where(type_of_transaction: "Credit Loan").sum(:amount)) %></h3>
+
 <h2>Total Spent</h2>
-<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount) + @transactions.where(category: "Credit").sum(:amount)) %></h3>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount))%></h3>
 
-<h2>Available Cash</h2>
-<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount) + @transactions.where(category: "Credit").sum(:amount)) %></h3>
+<h1>Net Income</h1>
+<h3><%= number_to_currency(10_000_000 - @transactions.where(type_of_transaction: "Expense").sum(:amount)) %></h3>
 
+<h1>Savings Account Balance</h1>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Income").sum(:amount) - @transactions.where(category: "Cash").sum(:amount)) %></h3>
 
-<h2>Net Worth</h2>
-<h3><%= number_to_currency(10_000_000 - Transaction.sum(:amount)) %></h3>
 
 <h2><%= link_to 'New Transaction', new_transaction_path %></h2>
 <h2><%= link_to 'Back', root_path %></h2>
