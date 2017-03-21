@@ -1,24 +1,32 @@
 <h1>All Time</h1>
 
 <h2>Credit Loans</h2>
-<h3><%= number_to_currency(@alltransactions.where(type_of_transaction: "Credit Loan").sum(:amount)) %></h3>
+<h3><%= number_to_currency(@alltransactions.where(type_of_transaction: "Credit Loan").sum(:amount), precision: 0) %></h3>
 
 <h1>CURRENT PERIOD</h1>
 
-<h2>Cash Spent Current Period</h2>
-<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount)) %></h3>
+<h2>Cash Spent</h2>
+<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3>
 
-<h2>Credit Spent Current Period</h2>
-<h3><%= number_to_currency(@transactions.where(category: "Credit").sum(:amount)) %></h3>
+<h2>Credit Spent</h2>
+<h3><%= number_to_currency(@transactions.where(category: "Credit", type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3>
 
-<h2>Total Spent Current Period</h2>
-<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount))%></h3>
+<h2>Total Spent</h2>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0)%></h2>
 
 <h1>Budget</h1>
-<h3><%= number_to_currency(10_000_000 - @transactions.where(type_of_transaction: "Expense").sum(:amount)) %></h3>
+<h2><%= number_to_currency(10_000_000 - @transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3>
+<br>
+<br>
+<h3>Savings Account Balance</h3>
+<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Income").sum(:amount) - @transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3>
 
-<h1>Savings Account Balance</h1>
-<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Income").sum(:amount) - @transactions.where(category: "Cash").sum(:amount)) %></h3>
+<h3>Credit Due Current Period</h3>
+<h3><%= number_to_currency(@transactions.where(category: "Credit Due").sum(:amount), precision: 0) %></h3>
+
+<h3>Personal Credit Due Current Period</h3>
+<h3><%= number_to_currency(@transactions.where(category: "Credit Due").sum(:amount), precision: 0) %></h3>
+
 
 <h2><%= link_to 'New Transaction', new_transaction_path %></h2>
 <h2><%= link_to 'Back', root_path %></h2>
