@@ -1,21 +1,32 @@
-<h2>Cash Spent</h2>
-<h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3>
-
-<h2>Credit Spent</h2>
-<h3><%= number_to_currency(@transactions.where(category: "Credit", type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3>
-
-<h2>Total Spent</h2>
-<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0)%></h2>
-
-<h1>Budget</h1>
-<h2><%= number_to_currency(10_000_000 - @transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3>
+<div class="media">
+  <div class="media-body">
+    <table>
+      <tbody>
+        <tr>
+          <td><h2>Cash Spent</h2></td>
+          <td><h3><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3></td>
+        </tr>
+        <tr>
+          <td><h2>Credit Spent</h2></td>
+          <td><h3><%= number_to_currency(@transactions.where(category: "Credit", type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3></td>
+        </tr>
+        <tr>
+          <td><h2>Total Spent</h2></td>
+          <td><h3><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0)%></h2></td>
+        </tr>
+        <tr>
+          <td><h1>Budget</h1></td>
+          <td><h2><%= number_to_currency(10_000_000 - @transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3></td>
+        </tr>
+        <tr>
+          <td><h3>Surplus/Deficit</h3></td>
+          <td><h3><%= number_to_currency(@transactions.where(category: "Balance").sum(:amount), precision: 0) %></h3></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <br>
 <br>
-<h3>Savings Account Balance</h3>
-<h3><%= number_to_currency(@transactions.where(type_of_transaction: "Income").sum(:amount) - @transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3>
-
-<h3>Surplus / Deficit</h3>
-<h3><%= number_to_currency(@transactions.where(category: "Balance").sum(:amount), precision: 0) %></h3>
-
-<h2><%= link_to 'New Transaction', new_transaction_path %></h2>
-<h2><%= link_to 'Back', root_path %></h2>
+<p><%= link_to 'New Transaction', new_transaction_path %></p>
+<p><%= link_to 'Back', root_path %><p>
