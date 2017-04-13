@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
 
   def index
     @search = TransactionSearch.new(params[:search])
-    @transactions = @search.scope
+    @transactions = @search.scope.order(date: :asc)
   end
 
   def new
