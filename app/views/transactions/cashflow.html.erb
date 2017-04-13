@@ -1,3 +1,13 @@
+<div class="row">
+  <h1>Cashflow</h1>
+  <div class="pull-right range-query">
+    <%= form_tag transactions_cashflow_path, method: :get do %>
+      <%= text_field_tag 'search[date_from]', @search.date_from %>
+      <%= text_field_tag 'search[date_to]', @search.date_to %>
+      <%= submit_tag 'Search', class: 'btn search-button' %>
+    <% end %>
+  </div>
+</div>
 <div class="media">
   <div class="media-body">
     <table>
@@ -8,11 +18,11 @@
         </tr>
         <tr>
           <td><h1>Expenses</h1></td>
-          <td><h3 class="amount"><%= number_to_currency(@cashflow_transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount),precision: 0) %></h3></td>
         </tr>
         <tr class="balance">
           <td><h3>Surplus/Deficit</h3></td>
-          <td><h3 class="amount"><%= number_to_currency(@all_transactions.where(type_of_transaction: "Income").sum(:amount) - @cashflow_transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@all_transactions.where(type_of_transaction: "Income").sum(:amount) - @all_transactions.where(category: "Cash").sum(:amount) - @transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3></td>
         </tr>
       </tbody>
     </table>

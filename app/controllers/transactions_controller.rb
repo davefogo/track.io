@@ -59,7 +59,7 @@ class TransactionsController < ApplicationController
 
   def cashflow
     @search = CashflowScope.new(params[:search])
-    @cashflow_transactions = @search.scope
+    @transactions = @search.scope
     @all_transactions = Transaction.all
   end
 
