@@ -60,7 +60,8 @@ class TransactionsController < ApplicationController
   def cashflow
     @search = CashflowScope.new(params[:search])
     @transactions = @search.scope
-    @all_transactions = Transaction.all
+    @income = @transactions.where(type_of_transaction: "Income")
+    @expenses = @transactions.where(category: "Cash")
   end
 
   private

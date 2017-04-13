@@ -14,15 +14,15 @@
       <tbody>
         <tr>
           <td><h1>Cash</h1></td>
-          <td><h3 class="amount"><%= number_to_currency(@all_transactions.where(type_of_transaction: "Income").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@income.sum(:amount), precision: 0) %></h3></td>
         </tr>
         <tr>
           <td><h1>Expenses</h1></td>
-          <td><h3 class="amount"><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount),precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@expenses.sum(:amount), precision: 0) %></h3></td>
         </tr>
         <tr class="balance">
           <td><h3>Surplus/Deficit</h3></td>
-          <td><h3 class="amount"><%= number_to_currency(@all_transactions.where(type_of_transaction: "Income").sum(:amount) - @transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@income.sum(:amount) - @expenses.sum(:amount), precision: 0) %></h3></td>
         </tr>
       </tbody>
     </table>
