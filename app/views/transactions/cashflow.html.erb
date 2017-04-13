@@ -12,7 +12,7 @@
         </tr>
         <tr class="balance">
           <td><h3>Surplus/Deficit</h3></td>
-          <td><h3 class="amount"><%= number_to_currency(@all_transactions.where(type_of_transaction: "Income").sum(:amount) - @all_transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@all_transactions.where(type_of_transaction: "Income").sum(:amount) - @cashflow_transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3></td>
         </tr>
       </tbody>
     </table>
