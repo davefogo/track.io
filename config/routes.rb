@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'transactions/dashboard'
 
+  get 'transactions/cashflow'
+
   get 'welcome/about'
 
   root 'welcome#index'

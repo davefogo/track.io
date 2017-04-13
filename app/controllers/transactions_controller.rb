@@ -53,11 +53,14 @@ class TransactionsController < ApplicationController
   end
 
   def dashboard
-    @transactions = Transaction.where(:date => Date.today.at_beginning_of_month..Date.today)
-    @alltransactions = Transaction.all
-    # start_date = params[2017-02-26].to_date.beginning_of_day
-    # end_date = params[2017-02-28].to_date.end_of_day
-    # @pastTransactions = Transaction.where(:date => start_date..end_date)
+    @search = TransactionSearch.new(params[:search])
+    @transactions = @search.scope
+  end
+
+  def cashflow
+    @search = CashflowScope.new(params[:search])
+    @cashflow_transactions = @search.scope
+    @all_transactions = Transaction.all
   end
 
   private
