@@ -1,26 +1,36 @@
+<div class="row">
+  <h1>Dashboard</h1>
+  <div class="pull-right range-query">
+    <%= form_tag transactions_dashboard_path, method: :get do %>
+      <%= text_field_tag 'search[date_from]', @search.date_from %>
+      <%= text_field_tag 'search[date_to]', @search.date_to %>
+      <%= submit_tag 'Search', class: 'btn search-button' %>
+    <% end %>
+  </div>
+</div>
 <div class="media">
   <div class="media-body">
     <table>
       <tbody>
         <tr>
           <td><h3>Cash Spent</h2></td>
-          <td><h3 class="amount"><%= number_to_currency(@transactions.where(category: "Cash").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@cash.sum(:amount), precision: 0) %></h3></td>
         </tr>
         <tr>
           <td><h3>Credit Spent</h2></td>
-          <td><h3 class="amount"><%= number_to_currency(@transactions.where(category: "Credit", type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@credit.sum(:amount), precision: 0) %></h3></td>
         </tr>
         <tr>
           <td><h2>Total Spent</h2></td>
-          <td><h3 class="amount"><%= number_to_currency(@transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0)%></h2></td>
+          <td><h3 class="amount"><%= number_to_currency(@total.sum(:amount), precision: 0)%></h2></td>
         </tr>
         <tr>
           <td><h1>Budget</h1></td>
-          <td><h3 class="amount"><%= number_to_currency(10_000_000 - @transactions.where(type_of_transaction: "Expense").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(10_000_000 - @total.sum(:amount), precision: 0) %></h3></td>
         </tr>
         <tr class="balance">
           <td><h3>Surplus/Deficit</h3></td>
-          <td><h3 class="amount"><%= number_to_currency(@transactions.where(category: "Balance").sum(:amount), precision: 0) %></h3></td>
+          <td><h3 class="amount"><%= number_to_currency(@surplus.sum(:amount), precision: 0) %></h3></td>
         </tr>
       </tbody>
     </table>

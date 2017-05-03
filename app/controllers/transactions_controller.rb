@@ -55,6 +55,10 @@ class TransactionsController < ApplicationController
   def dashboard
     @search = TransactionSearch.new(params[:search])
     @transactions = @search.scope
+    @cash = @transactions.where(category: "Cash", type_of_transaction: "Expense")
+    @credit = @transactions.where(category: "Credit", type_of_transaction: "Expense")
+    @total = @transactions.where(type_of_transaction: "Expense")
+    @surplus = @transactions.where(category: "Balance")
   end
 
   def cashflow
